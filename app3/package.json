@@ -20,7 +20,10 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
+    "@bit/nsebhastian.design-system.navbar": "0.0.2",
+    "css-loader": "^3.6.0",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "style-loader": "^1.2.1"
   }
 }

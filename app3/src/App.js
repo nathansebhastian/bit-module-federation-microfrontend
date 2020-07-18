@@ -1,44 +1,39 @@
 import React from 'react';
+import Navbar from '@bit/nsebhastian.design-system.navbar'
 
-const PrimeReactStyle = React.lazy(() => import('app1/PrimeReactStyle'));
-const Panel = React.lazy(() => import('app1/Panel'));
-const Header = React.lazy(() => import('app1/Header'));
+const ExploreHotel = React.lazy(() => import('app1/App'));
+const BookRoom = React.lazy(() => import('app2/App'));
 
-export default () => (
-  <div style={{margin: '20px'}}>
-    <React.Suspense fallback='Loading style'>
-      <PrimeReactStyle />
-    </React.Suspense>
-    <div className='content-section introduction'>
-      <div className='feature-intro'>
-        <React.Suspense fallback='Loading header'>
-          <Header>App3 - Panel</Header>
-        </React.Suspense>
-        <p>
-          Panel is a grouping component providing with content toggle feature.
-        </p>
-      </div>
-    </div>
+export default class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = { view:1 }
+    this.bookTheRoom = this.bookTheRoom.bind(this);
+  }
 
-    <div className='content-section implementation'>
-      <React.Suspense fallback='Loading panels'>
-        <Panel header='The Godfather I'>
-          The story begins as Don Vito Corleone, the head of a New York Mafia
-          family, oversees his daughter's wedding. His beloved son Michael has
-          just come home from the war, but does not intend to become part of his
-          father's business. Through Michael's life the nature of the family
-          business becomes clear. The business of the family is just like the
-          head of the family, kind and benevolent to those who give respect, but
-          given to ruthless violence whenever anything stands against the good
-          of the family.
-        </Panel>
-        <Panel
-          header='The Godfather II'
-          style={{marginTop: '2em'}}
-          toggleable={true}>
-          The continuing saga of the Corleone crime family tells the story of a young Vito Corleone growing up in Sicily and in 1910s New York; and follows Michael Corleone in the 1950s as he attempts to expand the family business into Las Vegas, Hollywood and Cuba.
-        </Panel>
+  bookTheRoom(){
+    this.setState({view: 2})
+  }
+  
+  render(){
+    const {view} = this.state
+    let component = (
+      <React.Suspense fallback='Loading app1'>
+        <ExploreHotel onClick={this.bookTheRoom}/>
       </React.Suspense>
-    </div>
-  </div>
-);
+    )
+    if(view === 2){
+      component = (
+        <React.Suspense fallback='Loading app2'>
+          <BookRoom />
+        </React.Suspense>
+      )
+    }
+    return(
+      <>
+        <Navbar links={['home', 'about']} />
+          {component}
+      </>
+    )
+  }
+}

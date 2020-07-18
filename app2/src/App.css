@@ -1,0 +1,35 @@
+.container {
+  margin: 3em auto;
+  max-width: 720px;
+}
+
+.column {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 350px;
+  height: 500px;
+  border: 2px solid blue;
+}
+
+.column-header {
+  text-align: center;
+}
+
+.column-content {
+  margin: 0 auto;
+  margin-bottom: 100px;
+}
+
+.form-group {
+  margin-bottom: 1em;
+}
+
+.form-label {
+  padding: 0 1em;
+}
+
+.react-datepicker-wrapper {
+  float: right;
+}

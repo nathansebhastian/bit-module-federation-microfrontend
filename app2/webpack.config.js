@@ -22,14 +22,19 @@ module.exports = {
           presets: ["@babel/preset-react"],
         },
       },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   plugins: [
     new ModuleFederationPlugin({
       name: "app2",
       library: { type: "var", name: "app2" },
-      remotes: {
-        app1: "app1",
+      filename: "remoteEntry.js",
+      exposes: {
+        "./App": "./src/App",
       },
       shared: ["react", "react-dom"],
     }),

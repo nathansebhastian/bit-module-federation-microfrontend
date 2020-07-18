@@ -1,40 +1,47 @@
 import React from 'react';
+import DatePicker from 'react-datepicker';
+import Button from '@bit/nsebhastian.design-system.button';
+import 'react-datepicker/dist/react-datepicker.css';
+import './App.css';
 
-const PrimeReactStyle = React.lazy(() => import('app1/PrimeReactStyle'));
-const Header = React.lazy(() => import('app1/Header'));
-const Card = React.lazy(() => import('app1/Card'));
-const Button = React.lazy(() => import('app1/Button'));
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {startDate: '', endDate: ''};
+  }
 
-const header = (
-  <div style={{textAlign: 'center'}}>
-    <React.Suspense fallback='Loading header'>
-      <Header>Hello this is App 2</Header>
-    </React.Suspense>
-  </div>
-);
-const footer = (
-  <span>
-    <React.Suspense fallback='Loading buttons'>
-      <Button label='Save' icon='pi pi-check' style={{marginRight: '.25em'}} />
-      <Button label='Cancel' icon='pi pi-times' className='p-button-secondary' />
-    </React.Suspense>
-  </span>
-);
-
-export default () => (
-  <div style={{margin: '20px'}}>
-  <React.Suspense fallback='Loading style'>
-    <PrimeReactStyle />
-  </React.Suspense>
-    <div style={{width: 400}}>
-    <React.Suspense fallback='Loading card'>
-      <Card footer={footer} header={header}>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
-        consequuntur error repudiandae numquam deserunt quisquam repellat libero
-        asperiores earum nam nobis, culpa ratione quam perferendis esse,
-        cupiditate neque quas!
-      </Card>
-    </React.Suspense>
-    </div>
-  </div>
-);
+  render() {
+    const {startDate, endDate} = this.state;
+    return (
+      <div className='container'>
+        <div className='column'>
+          <div className='column-header'>
+            <h2>Book the room</h2>
+          </div>
+          <div className='column-content'>
+            <form>
+              <div className='form-group'>
+                <label className='form-label'>Check-in date: </label>
+                <DatePicker
+                  selected={startDate}
+                  onChange={date => this.setState({startDate: date})}
+                />
+              </div>
+              <div className='form-group'>
+                <label className='form-label'>Check-out date: </label>
+                <DatePicker
+                  selected={endDate}
+                  onChange={date => this.setState({endDate: date})}
+                />
+              </div>
+            </form>
+          </div>
+          <Button
+            title='Book now'
+            onClick={() => alert('Book request received. Thank you!')}
+          />
+        </div>
+      </div>
+    );
+  }
+}

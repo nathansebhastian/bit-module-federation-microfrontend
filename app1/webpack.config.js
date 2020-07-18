@@ -22,6 +22,10 @@ module.exports = {
           presets: ["@babel/preset-react"]
         },
       },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   plugins: [
@@ -31,11 +35,7 @@ module.exports = {
       filename: "remoteEntry.js",
       exposes: {
         // expose each component
-        "./Header": "./src/components/Header",
-        "./Card": "./src/components/Card",
-        "./Button": "./src/components/Button",
-        "./Panel": "./src/components/Panel",
-        "./PrimeReactStyle": "./src/components/PrimeReactStyle",
+        "./App": "./src/App",
       },
       shared: ["react", "react-dom"],
     }),
