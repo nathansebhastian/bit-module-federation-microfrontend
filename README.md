@@ -2,7 +2,7 @@
 
 This example shows how you can create a component library application that exposes components for other apps to use.
 
-For more information, visit the article explaining this project
+For more information, visit the article [explaining this project](https://blog.bitsrc.io/revolutionizing-micro-frontends-with-webpack-5-module-federation-and-bit-99ff81ceb0)
 
 - `app1` and `app2` are standalone applications that exposes its App file for reuse.
 - `app3` is the master Application that consumes both `app1` and `app2`
